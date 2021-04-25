@@ -1,7 +1,9 @@
 package org.example.infrastructure;
 
 public class ConfigurationManager {
-    public static void main(String[] args) {
-        System.out.println(System.getenv("HOME"));
+    // return value of passed ENV_VAR or default value of this VAR
+
+    public static String getEnvVarOrDefault (String envVar, String defaultValue) {
+        return System.getenv(envVar) == null ? defaultValue : System.getenv(envVar);
     }
 }
