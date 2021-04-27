@@ -1,4 +1,4 @@
-package org.example.homeworks.homework2;
+package org.example.homeworks.homework02;
 
 public class CheckOddEven {
     public static void main(String[] args) {
