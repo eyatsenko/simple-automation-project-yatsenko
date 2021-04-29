@@ -26,17 +26,37 @@ public class ProductCode {
 
         int countOfNumbers = 0;
 
-        for (int i = 0; i < 14; i++) {
-            int randomIndexAlpha = new Random().nextInt(alphabet.length());
-            int randomIndexNumbers = new Random().nextInt(numbers.length());
-            productCode += alphabetUpper.toCharArray()[randomIndexAlpha];
+        for (int i = 0; i < 8; i++) {
+            int randomIndexAlphaOuter = new Random().nextInt(alphabet.length());
+
             while (countOfNumbers < 6){
+                int randomIndexNumbers = new Random().nextInt(numbers.length());
+                int randomIndexAlphaInner = new Random().nextInt(alphabet.length());
+                productCode += alphabetUpper.toCharArray()[randomIndexAlphaInner];
                 productCode += numbers.toCharArray()[randomIndexNumbers];
                 countOfNumbers++;
             }
-
+            productCode += alphabetUpper.toCharArray()[randomIndexAlphaOuter];
         }
 
-        return productCode;
+        char a = productCode.charAt(1);
+        char b = productCode.charAt(3);
+        String ab = a + String.valueOf(b);
+        int abi = Integer.parseInt(ab);
+
+        char c = productCode.charAt(5);
+        char d = productCode.charAt(7);
+        String cd = c + String.valueOf(d);
+        int cdi = Integer.parseInt(cd);
+
+        char e = productCode.charAt(9);
+        char f = productCode.charAt(11);
+        String ef = e + String.valueOf(f);
+        int efi = Integer.parseInt(ef);
+
+        int result = abi * cdi * efi;
+
+        return productCode + " " + result;
+
     }
 }
