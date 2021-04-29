@@ -8,7 +8,7 @@ Count the number of words of each length in some text. (do not use Collections)
 
 import java.util.Arrays;
 
-public class WordOfEachLength {
+public class CountWords {
     public static void main(String[] args) {
         String text = "London Is Is London The Capital Of The Great Britain";
 
