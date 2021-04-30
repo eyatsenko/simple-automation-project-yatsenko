@@ -10,7 +10,6 @@ phel
 
 public class SquareWordPatterns {
     public static void main(String[] args) {
-
         // Вводим строку
         String text = "SquareWord";
 

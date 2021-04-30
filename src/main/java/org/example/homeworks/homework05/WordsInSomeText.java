@@ -5,15 +5,13 @@ package org.example.homeworks.homework05;
 */
 
 public class WordsInSomeText {
-
     public static void main(String[] args) {
-        String text = "London Is The Capital Of Great Britain";
+        String text = "London, Is The. Capital Of, Great. Britain";
 
-        String[] words = text.split(" ", 9999);
+        String[] words = text.replaceAll("[^a-zA-Z ]", "").split("\\s+");
 
         int count = words.length;
 
-        System.out.println(count);
-
+        System.out.println("Count of words is " + count);
     }
 }

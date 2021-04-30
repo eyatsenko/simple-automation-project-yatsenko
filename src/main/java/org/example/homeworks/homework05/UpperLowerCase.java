@@ -6,17 +6,14 @@ Change given text into all upper case, lower case, change the first letter of ea
 sentence) to upper and the rest to lower, etc.
 */
 
-import java.util.Locale;
-
 public class UpperLowerCase {
     public static void main(String[] args) {
-        String word = "Test";
         String sentence = "London is the capital of Great Britain";
 
-        String wordUpper = word.toUpperCase();
-        String wordLower = word.toLowerCase();
+        String sentenceUpper = sentence.toUpperCase();
+        String sentenceLower = sentence.toLowerCase();
 
-        String[] words = sentence.split(" ", 999);
+        String[] words = sentence.replaceAll("[^a-zA-Z ]", "").split("\\s+");
 
         StringBuilder sentenceFirstUp = new StringBuilder();
 
@@ -27,8 +24,8 @@ public class UpperLowerCase {
 
         String result = sentenceFirstUp.toString().trim();
 
-        System.out.println(wordUpper);
-        System.out.println(wordLower);
+        System.out.println(sentenceUpper);
+        System.out.println(sentenceLower);
         System.out.println(result);
     }
 }

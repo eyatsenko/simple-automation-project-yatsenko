@@ -6,57 +6,65 @@ package org.example.homeworks.homework05;
 first 6 digits taken in groups of two from the left. Eg 65*66*67 = 287430.
 */
 
-import java.util.Locale;
-import java.util.Random;
-
 public class ProductCode {
     public static void main(String[] args) {
+        String productCode = "AX6BYU56UX6CV6BNT7NM 287430";
 
-        System.out.println(makeProductCode());
+        String[] partsOfCode = productCode.split(" ");
+        String firstPart = partsOfCode[0];
+        String secondPart = partsOfCode[1];
+
+        if (isLengthValid(firstPart) && isLetterUpper(firstPart) && isCountOfNumbersValid(firstPart) && isSecondPartEqualMultiply(firstPart, secondPart)){
+            System.out.println("Code is valid");
+        } else System.out.println("Code is invalid");
     }
 
-    public static String makeProductCode() {
-
-        String productCode = "";
-        String alphabet = "";
-        String numbers = "123456789";
-        alphabet = "abcdefghijklmnopqrstuwxyz";
-
-        String alphabetUpper = alphabet.toUpperCase();
-
-        int countOfNumbers = 0;
-
-        for (int i = 0; i < 8; i++) {
-            int randomIndexAlphaOuter = new Random().nextInt(alphabet.length());
-
-            while (countOfNumbers < 6){
-                int randomIndexNumbers = new Random().nextInt(numbers.length());
-                int randomIndexAlphaInner = new Random().nextInt(alphabet.length());
-                productCode += alphabetUpper.toCharArray()[randomIndexAlphaInner];
-                productCode += numbers.toCharArray()[randomIndexNumbers];
-                countOfNumbers++;
-            }
-            productCode += alphabetUpper.toCharArray()[randomIndexAlphaOuter];
+    public static boolean isLengthValid(String code) {
+        boolean result = false;
+        if (code.length()== 20){
+            result = true;
         }
+        return result;
+    }
 
-        char a = productCode.charAt(1);
-        char b = productCode.charAt(3);
-        String ab = a + String.valueOf(b);
-        int abi = Integer.parseInt(ab);
+    public static boolean isCountOfNumbersValid(String firstPart) {
+        boolean result = false;
 
-        char c = productCode.charAt(5);
-        char d = productCode.charAt(7);
-        String cd = c + String.valueOf(d);
-        int cdi = Integer.parseInt(cd);
+        // получаем все цифры из первой части
+        String[] numbersS = firstPart.replaceAll("[^0123456789]", "").split("\\s+");
 
-        char e = productCode.charAt(9);
-        char f = productCode.charAt(11);
-        String ef = e + String.valueOf(f);
-        int efi = Integer.parseInt(ef);
+        if (numbersS[0].length() == 6) {
+            result = true;
+        }
+        return result;
+    }
 
-        int result = abi * cdi * efi;
+    public static boolean isSecondPartEqualMultiply (String firstPart, String secondPart) {
+        boolean result = false;
+        int multiplyResult = Integer.parseInt(secondPart);
 
-        return productCode + " " + result;
+        // получаем все цифры из первой части
+        String[] numbersS = firstPart.replaceAll("[^0123456789]", "").split("\\s+");
 
+        int firstNumberInt = Integer.parseInt(numbersS[0].charAt(0) + "" + numbersS[0].charAt(1));
+        int secondNumberInt = Integer.parseInt(numbersS[0].charAt(2) + "" + numbersS[0].charAt(3));
+        int thirdNumberInt = Integer.parseInt(numbersS[0].charAt(4) + "" + numbersS[0].charAt(5));
+
+        if ((firstNumberInt * secondNumberInt * thirdNumberInt) == multiplyResult){
+            result = true;
+        }
+        return result;
+    }
+
+    public static boolean isLetterUpper(String firstPart) {
+        boolean result = false;
+
+        // убираю цифры и строчные буквы
+        String[] onlyUpper = firstPart.replaceAll("[A-Z 0123456789]", "").split("\\s+");
+
+        if (onlyUpper[0] == ""){
+            result = true;
+        }
+        return result;
     }
 }

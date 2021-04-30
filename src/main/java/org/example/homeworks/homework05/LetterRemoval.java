@@ -8,7 +8,7 @@ phrase.
 
 public class LetterRemoval {
     public static void main(String[] args) {
-        removeLetterInThePhrase("London is a capital of Great Britain", "a");
+        removeLetterInThePhrase("London is a capital of Great Britain", "o");
     }
 
     public static void removeLetterInThePhrase (String phrase, String letter) {
