@@ -1,4 +1,4 @@
-package org.example.lectures.lecture07;
+package org.example.lectures.lecture08;
 
 import java.util.UUID;
 
