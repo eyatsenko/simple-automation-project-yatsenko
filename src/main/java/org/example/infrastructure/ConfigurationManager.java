@@ -26,8 +26,7 @@ public class ConfigurationManager {
     }
 
     // return value of passed ENV_VAR or default value of this VAR
-    private static String getEnvVarOrDefault(String envVar, String defaultValue) {
-        String var = System.getenv(envVar);
-        return (var == null && !var.isBlank()) ? defaultValue : var;
+    private static String getEnvVarOrDefault (String envVar, String defaultValue) {
+        return System.getenv(envVar) == null ? defaultValue : System.getenv(envVar);
     }
 }
