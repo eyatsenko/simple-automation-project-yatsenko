@@ -3,7 +3,7 @@ package org.example.infrastructure;
 public class ConfigurationManager {
     private static ConfigurationManager instance;
     private String defaultBrowser = "Chrome";
-    private String defaultEnv = "https://www.test.com/";
+    private String defaultEnv = "test";
 
     private ConfigurationManager() {
     }
@@ -26,7 +26,7 @@ public class ConfigurationManager {
     }
 
     // return value of passed ENV_VAR or default value of this VAR
-    private static String getEnvVarOrDefault (String envVar, String defaultValue) {
+    private String getEnvVarOrDefault (String envVar, String defaultValue) {
         return System.getenv(envVar) == null ? defaultValue : System.getenv(envVar);
     }
 }
