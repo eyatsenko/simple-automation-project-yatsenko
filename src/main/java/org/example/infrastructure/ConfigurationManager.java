@@ -1,21 +1,32 @@
 package org.example.infrastructure;
 
 public class ConfigurationManager {
+    private static ConfigurationManager instance;
+    private String defaultBrowser = "Chrome";
+    private String defaultEnv = "test";
 
-    // implement singleton pattern
+    private ConfigurationManager() {
+    }
+
+    public static ConfigurationManager getInstance() {
+        if (instance == null) {
+            instance = new ConfigurationManager();
+        }
+        return instance;
+    }
 
     // Env var testBrowser / chrome
-    public String getTestBrowser (){
-        return "";
+    public String getTestBrowser() {
+        return getEnvVarOrDefault("TESTBROWSER", defaultBrowser);
     }
 
     // Env var testEnv / test
     public String getTestEnv() {
-        return "";
+        return getEnvVarOrDefault("TESTENV", defaultEnv);
     }
 
     // return value of passed ENV_VAR or default value of this VAR
-    public static String getEnvVarOrDefault (String envVar, String defaultValue) {
+    private String getEnvVarOrDefault (String envVar, String defaultValue) {
         return System.getenv(envVar) == null ? defaultValue : System.getenv(envVar);
     }
 }
