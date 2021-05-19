@@ -4,6 +4,8 @@ public class ConfigurationManager {
     private static ConfigurationManager instance;
     private String defaultBrowser = "Chrome";
     private String defaultEnv = "test";
+    private final String TEST_BROWSER = "TESTBROWSER";
+    private final String TEST_ENVIRONMENT = "TESTENV";
 
     private ConfigurationManager() {
     }
@@ -17,16 +19,17 @@ public class ConfigurationManager {
 
     // Env var testBrowser / chrome
     public String getTestBrowser() {
-        return getEnvVarOrDefault("TESTBROWSER", defaultBrowser);
+        return getEnvVarOrDefault(TEST_BROWSER, defaultBrowser);
     }
 
     // Env var testEnv / test
     public String getTestEnv() {
-        return getEnvVarOrDefault("TESTENV", defaultEnv);
+        return getEnvVarOrDefault(TEST_ENVIRONMENT, defaultEnv);
     }
 
     // return value of passed ENV_VAR or default value of this VAR
-    private String getEnvVarOrDefault (String envVar, String defaultValue) {
-        return System.getenv(envVar) == null ? defaultValue : System.getenv(envVar);
+    private String getEnvVarOrDefault(String envVar, String defaultValue) {
+        String var = System.getenv(envVar);
+        return (var == null || var.isBlank()) ? defaultValue : var;
     }
 }
