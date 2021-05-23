@@ -1,6 +1,6 @@
 package org.example.lectures.lecture08;
 
-import org.example.infrastructure.TestLogger;
+import org.example.infrastructure.logger.StdTestLogger;
 
 public class App {
     public static void main(String[] args) {
@@ -11,7 +11,7 @@ public class App {
         System.out.println(student2);
 
 
-        TestLogger logger = new TestLogger();
+        StdTestLogger logger = new StdTestLogger();
         logger.log("Start");
         for (int i = 0; i < 5; i++) {
             logger.log("Step " + i);
