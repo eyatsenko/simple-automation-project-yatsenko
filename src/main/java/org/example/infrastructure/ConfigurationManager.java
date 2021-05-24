@@ -27,6 +27,10 @@ public class ConfigurationManager {
         return getEnvVarOrDefault(TEST_ENVIRONMENT, defaultEnv);
     }
 
+    public String getRunOn(){
+        return getEnvVarOrDefault("runOn", "local");
+    }
+
     // return value of passed ENV_VAR or default value of this VAR
     private String getEnvVarOrDefault(String envVar, String defaultValue) {
         String var = System.getenv(envVar);

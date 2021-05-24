@@ -1,18 +1,23 @@
-package org.example.infrastructure;
+package org.example.infrastructure.logger;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class TestLogger {
+public abstract class TestLogger {
+    public abstract void log (String msg);
 
     private int counter = 0;
 
-    public void log (String msg) {
+    protected String formatMessage (String message) {
         counter ++;
+
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
         String ts = sdf.format(new Date());
+
         String name = Thread.currentThread().getName();
 
-        System.out.println(counter + ") " + ts + " [" + name + "]: " + msg);
+        return counter + ") " + ts + " [" + name + "]: " + message;
     }
+
+    public abstract void end ();
 }
