@@ -31,6 +31,10 @@ public class ConfigurationManager {
         return getEnvVarOrDefault("runOn", "local");
     }
 
+    public String getMobilePlatform() {
+        return getEnvVarOrDefault("mobilePlatform", "iOS");
+    }
+
     // return value of passed ENV_VAR or default value of this VAR
     private String getEnvVarOrDefault(String envVar, String defaultValue) {
         String var = System.getenv(envVar);
