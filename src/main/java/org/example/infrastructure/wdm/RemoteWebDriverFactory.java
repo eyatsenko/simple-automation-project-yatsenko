@@ -2,18 +2,18 @@ package org.example.infrastructure.wdm;
 
 import org.example.infrastructure.ConfigurationManager;
 
-// 3) Метод create должен вернуть строку (пока что) браузер, который будет запущен на основе envVar
 public class RemoteWebDriverFactory implements WebDriverFactory {
+
     @Override
     public String create() {
         switch (ConfigurationManager.getInstance().getTestBrowser()) {
             case "firefox":
-                return "Mozilla Firefox";
+                return "Remote Mozilla Firefox";
             case "ie":
-                return "MS InternetExplorer";
+                return "Remote MS InternetExplorer";
             case "chrome":
             default:
-                return "Google Chrome";
+                return "Remote Google Chrome";
         }
     }
 }

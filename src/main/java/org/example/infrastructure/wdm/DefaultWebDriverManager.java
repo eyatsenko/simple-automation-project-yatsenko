@@ -2,19 +2,18 @@ package org.example.infrastructure.wdm;
 
 import org.example.infrastructure.ConfigurationManager;
 
-// метод getBrowser должен вернуть браузер на основе enVar runOn (значения: local, remote, cloud)
 public class DefaultWebDriverManager implements WebDriverManager {
 
     @Override
     public String getBrowser() {
         switch (ConfigurationManager.getInstance().getRunOn()) {
             case "cloud":
-                return "cloud";
+                return new CloudWebDriverFactory().create();
             case "remote":
-                return "remote";
+                return new RemoteWebDriverFactory().create();
             case "local":
             default:
-                return "local";
+                return new LocalWebDriverFactory().create();
         }
     }
 
