@@ -3,16 +3,17 @@ package org.example.infrastructure;
 import org.example.infrastructure.logger.FileTestLogger;
 import org.example.infrastructure.logger.StdTestLogger;
 import org.example.infrastructure.logger.TestLogger;
+import org.example.infrastructure.wdm.DefaultWebDriverManager;
 
 public class TestBase {
     protected TestLogger logger;
-    private WebDriverManager wdm;
+    private DefaultWebDriverManager wdm;
     protected String browser;
 
     public void setUp() {
         logger = getLogger();
-        wdm = new WebDriverManager();
-        browser = wdm.createWebDriver();
+        wdm = new DefaultWebDriverManager();
+        browser = wdm.getBrowser();
         System.out.println("Starting browser " + browser);
         beforeTest();
     }
@@ -20,7 +21,7 @@ public class TestBase {
     public void cleanUp() {
         afterTest();
 
-        wdm.destroyWebDriver(browser);
+        wdm.destroyBrowser(browser);
         logger.end();
     }
 
