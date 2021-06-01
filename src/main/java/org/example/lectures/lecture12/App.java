@@ -1,6 +1,6 @@
 package org.example.lectures.lecture12;
 
-import org.example.infrastructure.ConfigurationManager;
+import org.example.infrastructure.config.ConfigurationManager;
 import org.example.infrastructure.logger.StdTestLogger;
 import org.example.infrastructure.logger.TestLogger;
 import org.example.lectures.lecture12.mobile.MobileApplication;

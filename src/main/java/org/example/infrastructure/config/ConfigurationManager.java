@@ -1,4 +1,4 @@
-package org.example.infrastructure;
+package org.example.infrastructure.config;
 
 public class ConfigurationManager {
     private static ConfigurationManager instance;
