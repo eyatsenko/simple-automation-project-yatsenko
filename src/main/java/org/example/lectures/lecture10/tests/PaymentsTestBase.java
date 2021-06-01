@@ -1,6 +1,6 @@
 package org.example.lectures.lecture10.tests;
 
-import org.example.infrastructure.TestBase;
+import org.example.infrastructure.base.TestBase;
 
 public class PaymentsTestBase extends TestBase {
     @Override

@@ -1,4 +1,4 @@
-package org.example.homeworks.homework12;
+package org.example.infrastructure.utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ public class UrlBuilder {
     }
 
 
-    static class Builder {
+    public static class Builder {
 
         public void withProtocol(String protocol) {
             if (protocol.contains("://")) {

@@ -1,5 +1,7 @@
 package org.example.homeworks.homework12;
-import org.example.homeworks.homework12.UrlBuilder.*;
+
+import org.example.infrastructure.utils.UrlBuilder;
+import org.example.infrastructure.utils.UrlBuilder.Builder;
 
 public class HomeWork12app {
     public static void main(String[] args) {

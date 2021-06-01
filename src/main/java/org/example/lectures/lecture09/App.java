@@ -1,7 +1,5 @@
 package org.example.lectures.lecture09;
 
-import org.example.infrastructure.StringUtils;
-
 public class App {
 
     public static void main(String[] args) {

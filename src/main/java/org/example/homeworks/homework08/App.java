@@ -1,6 +1,6 @@
 package org.example.homeworks.homework08;
 
-import org.example.infrastructure.ConfigurationManager;
+import org.example.infrastructure.config.ConfigurationManager;
 
 public class App {
     public static void main(String[] args) {

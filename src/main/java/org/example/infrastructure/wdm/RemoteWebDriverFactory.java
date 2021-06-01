@@ -1,17 +1,21 @@
 package org.example.infrastructure.wdm;
 
-import org.example.infrastructure.ConfigurationManager;
+import org.example.infrastructure.config.ConfigurationManager;
+import org.example.infrastructure.wdm.enums.BrowserType;
 
 public class RemoteWebDriverFactory implements WebDriverFactory {
 
     @Override
     public String create() {
-        switch (ConfigurationManager.getInstance().getTestBrowser()) {
-            case "firefox":
+
+        BrowserType type = BrowserType.valueOf(ConfigurationManager.getInstance().getTestBrowser().toUpperCase());
+
+        switch (type) {
+            case FIREFOX:
                 return "Remote Mozilla Firefox";
-            case "ie":
+            case INTERNET_EXPLORER:
                 return "Remote MS InternetExplorer";
-            case "chrome":
+            case CHROME:
             default:
                 return "Remote Google Chrome";
         }
