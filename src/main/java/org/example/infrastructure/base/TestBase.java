@@ -1,6 +1,9 @@
 package org.example.infrastructure.base;
 
 import org.example.infrastructure.config.ConfigurationManager;
+import org.example.infrastructure.data.DbUserDataMapper;
+import org.example.infrastructure.data.FileUserDataMapper;
+import org.example.infrastructure.data.UserDataMapper;
 import org.example.infrastructure.logger.FileTestLogger;
 import org.example.infrastructure.logger.StdTestLogger;
 import org.example.infrastructure.logger.TestLogger;
@@ -11,7 +14,10 @@ public class TestBase {
     private DefaultWebDriverManager wdm;
     protected String browser;
 
+    protected UserDataMapper userData;
+
     public void setUp() {
+        userData = getUserData();
         logger = getLogger();
         wdm = new DefaultWebDriverManager();
         browser = wdm.getBrowser();
@@ -37,5 +43,10 @@ public class TestBase {
     private TestLogger getLogger () {
         return ConfigurationManager.getInstance().getRunOn().equals("local") ?
                 new StdTestLogger(): new FileTestLogger();
+    }
+
+    private UserDataMapper getUserData() {
+        return ConfigurationManager.getInstance().getTestDataSource().equals("file") ?
+                new FileUserDataMapper("users.txt") : new DbUserDataMapper("sqlite://mytest.db");
     }
 }
