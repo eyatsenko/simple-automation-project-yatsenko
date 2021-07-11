@@ -6,11 +6,13 @@ public class User {
     private String id;
     private String email;
     private String password;
+    private String name;
 
-    public User(String id, String email, String password) {
+    public User(String id, String email, String password, String name) {
         this.id = id;
         this.email = email;
         this.password = password;
+        this.name = name;
     }
 
     public String getId() {
@@ -25,18 +27,21 @@ public class User {
         return password;
     }
 
+    public String getName() {
+        return name;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id.equals(user.id) && email.equals(user.email) && password.equals(user.password);
+        return id.equals(user.id) && email.equals(user.email) && password.equals(user.password) && name.equals(user.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password);
+        return Objects.hash(id, email, password, name);
     }
 
     @Override
@@ -45,6 +50,7 @@ public class User {
                 "id='" + id + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

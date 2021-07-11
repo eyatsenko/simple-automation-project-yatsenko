@@ -16,12 +16,7 @@ public class DbUserDataMapper extends AbstractUserDataMapper {
 
             while (set.next()) {
 
-                for (int i = 0; i < users.length; i++) {
-                    if (users[i] == null) {
-                        users[i] = new User (set.getString("id"), set.getString("email"), set.getString("password"));
-                        break;
-                    }
-                }
+                users.add(new User(set.getString("id"), set.getString("email"), set.getString("password"), set.getString("name")));
             }
 
             connection.close();

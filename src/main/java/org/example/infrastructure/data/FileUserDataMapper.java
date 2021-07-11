@@ -8,18 +8,15 @@ public class FileUserDataMapper extends AbstractUserDataMapper {
     public FileUserDataMapper(String fileName) {
 
         try (FileReader fr = new FileReader(fileName);
-             BufferedReader br = new BufferedReader(fr);) {
+             BufferedReader br = new BufferedReader(fr)) {
+
             String line;
+
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                User user = new User(parts[0], parts[1], parts[2]);
+                User user = new User(parts[0], parts[1], parts[2], parts[3]);
 
-                for (int i = 0; i < users.length; i++) {
-                    if (users[i] == null) {
-                        users[i] = user;
-                        break;
-                    }
-                }
+                users.add(user);
             }
 
         } catch (Exception ex) {

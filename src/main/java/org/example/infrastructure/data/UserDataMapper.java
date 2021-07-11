@@ -1,9 +1,13 @@
 package org.example.infrastructure.data;
 
+import java.util.List;
+
 public interface UserDataMapper {
 
     User findByEmail(String email);
 
-    User [] getAllUsers();
+    User findByName(String name);
+
+    List<User> getAllUsers();
 
 }
