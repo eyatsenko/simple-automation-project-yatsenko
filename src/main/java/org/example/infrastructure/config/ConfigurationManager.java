@@ -43,6 +43,10 @@ public class ConfigurationManager {
         return getEnvVarOrDefault("urlParams", "");
     }
 
+    public String getLocale ()  {
+        return getEnvVarOrDefault("testLocale", "en");
+    }
+
     // return value of passed ENV_VAR or default value of this VAR
     private String getEnvVarOrDefault(String envVar, String defaultValue) {
         String var = System.getenv(envVar);
