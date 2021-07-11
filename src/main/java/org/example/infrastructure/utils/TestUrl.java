@@ -2,19 +2,22 @@ package org.example.infrastructure.utils;
 
 import org.example.infrastructure.config.ConfigurationManager;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TestUrl {
 
     private String protocol;
     private String domain;
     private int port;
     private String path;
-    private String params = "?";
+    private Map<String, String> params = new HashMap<>();
 
     public TestUrl() {
 
     }
 
-    public TestUrl(String protocol, String domain, int port, String path, String params) {
+    public TestUrl(String protocol, String domain, int port, String path, Map<String, String> params) {
         this.protocol = protocol;
         this.domain = domain;
         this.port = port;
@@ -35,7 +38,7 @@ public class TestUrl {
 
     public static class URLS {
 
-        public static String myAccountUrl () {
+        public static String myAccountUrl() {
 
             return new TestUrl.Builder()
                     .withDomain(ConfigurationManager.getInstance().getTestEnv())
@@ -60,7 +63,7 @@ public class TestUrl {
         return path;
     }
 
-    public String getParams() {
+    public Map<String, String> getParams() {
         return params;
     }
 
@@ -92,19 +95,21 @@ public class TestUrl {
             return this;
         }
 
-        public Builder withParams(String param) {
+        public Builder withParam(String param) {
 
-            if (param != null || !param.isBlank())
-                url.params += param + "&";
-
+            url.params.put(param, "");
             return this;
         }
 
-        public Builder withParams(String key, String value) {
+        public Builder withParam(String key, String value) {
 
-            if (key != null || !key.isBlank() || value != null || value.isBlank())
-                url.params += key + "=" + value + "&";
+            url.params.put(key, value);
+            return this;
+        }
 
+        public Builder withParams(Map<String, String> params) {
+
+            url.params.putAll(params);
             return this;
         }
 
@@ -131,7 +136,16 @@ public class TestUrl {
                 resultUrl += url.getPath().startsWith("/") ? url.getPath() : "/" + url.getPath();
             }
 
-            resultUrl += url.getParams();
+            if (!url.getParams().isEmpty()) {
+                resultUrl += "?";
+
+                for (Map.Entry<String, String> entry : url.getParams().entrySet()) {
+
+                    resultUrl += entry.getValue().isEmpty() ?
+                            entry.getKey() + "&" :
+                            entry.getKey() + "=" + entry.getValue() + "&";
+                }
+            }
 
             return resultUrl;
         }

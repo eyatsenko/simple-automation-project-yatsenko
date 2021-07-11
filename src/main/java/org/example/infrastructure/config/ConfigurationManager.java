@@ -39,6 +39,10 @@ public class ConfigurationManager {
         return getEnvVarOrDefault("TestDataSource", "file");
     }
 
+    public String getUrlParams () {
+        return getEnvVarOrDefault("urlParams", "");
+    }
+
     // return value of passed ENV_VAR or default value of this VAR
     private String getEnvVarOrDefault(String envVar, String defaultValue) {
         String var = System.getenv(envVar);
