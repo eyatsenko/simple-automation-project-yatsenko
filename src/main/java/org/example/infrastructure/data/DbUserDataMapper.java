@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 public class DbUserDataMapper extends AbstractUserDataMapper {
 
     public DbUserDataMapper(String dbUrl) {
+
         try {
             Connection connection = DriverManager.getConnection(dbUrl);
 

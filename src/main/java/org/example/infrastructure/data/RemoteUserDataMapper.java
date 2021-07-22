@@ -2,9 +2,9 @@ package org.example.infrastructure.data;
 
 public class RemoteUserDataMapper extends AbstractUserDataMapper {
 
-    public RemoteUserDataMapper() {
+    public RemoteUserDataMapper(String url) {
 
-        String url = "http://myusersservice.com";
+        //String url = "http://myusersservice.com";
         // okHTTTP
         // HTTP GET CALL ==> Response
         // Response.getBody
