@@ -1,9 +1,10 @@
-package org.example.infrastructure.wdm;
+package org.example.infrastructure.wdm.factory;
 
 import org.example.infrastructure.config.ConfigurationManager;
+import org.example.infrastructure.wdm.WebDriverFactory;
 import org.example.infrastructure.wdm.enums.BrowserType;
 
-public class RemoteWebDriverFactory implements WebDriverFactory {
+public class LocalWebDriverFactory implements WebDriverFactory {
 
     @Override
     public String create() {
@@ -12,12 +13,12 @@ public class RemoteWebDriverFactory implements WebDriverFactory {
 
         switch (type) {
             case FIREFOX:
-                return "Remote Mozilla Firefox";
+                return "Local Mozilla Firefox";
             case INTERNET_EXPLORER:
-                return "Remote MS InternetExplorer";
+                return "Local MS InternetExplorer";
             case CHROME:
             default:
-                return "Remote Google Chrome";
+                return "Local Google Chrome";
         }
     }
 }

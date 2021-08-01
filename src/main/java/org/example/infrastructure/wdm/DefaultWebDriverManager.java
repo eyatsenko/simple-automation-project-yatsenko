@@ -2,6 +2,9 @@ package org.example.infrastructure.wdm;
 
 import org.example.infrastructure.config.ConfigurationManager;
 import org.example.infrastructure.wdm.enums.RunOn;
+import org.example.infrastructure.wdm.factory.CloudWebDriverFactory;
+import org.example.infrastructure.wdm.factory.RemoteWebDriverFactory;
+import org.example.infrastructure.wdm.factory.LocalWebDriverFactory;
 
 public class DefaultWebDriverManager implements WebDriverManager {
 

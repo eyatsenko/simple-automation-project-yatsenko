@@ -1,6 +1,7 @@
-package org.example.infrastructure.wdm;
+package org.example.infrastructure.wdm.factory;
 
 import org.example.infrastructure.config.ConfigurationManager;
+import org.example.infrastructure.wdm.WebDriverFactory;
 import org.example.infrastructure.wdm.enums.BrowserType;
 
 public class CloudWebDriverFactory implements WebDriverFactory {
