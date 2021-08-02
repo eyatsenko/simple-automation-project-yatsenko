@@ -1,6 +1,7 @@
 package org.example.infrastructure.wdm.factory;
 
 import org.example.infrastructure.config.ConfigurationManager;
+import org.example.infrastructure.utils.capabilities.BrowserCapabilities;
 import org.example.infrastructure.wdm.WebDriverFactory;
 import org.example.infrastructure.wdm.enums.BrowserType;
 import org.openqa.selenium.WebDriver;
@@ -17,12 +18,12 @@ public class LocalWebDriverFactory implements WebDriverFactory {
 
         switch (type) {
             case FIREFOX:
-                return new FirefoxDriver();
+                return new FirefoxDriver(BrowserCapabilities.getFirefoxCapabilities());
             case INTERNET_EXPLORER:
-                return new InternetExplorerDriver();
+                return new InternetExplorerDriver(BrowserCapabilities.getIECapabilities());
             case CHROME:
             default:
-                return new ChromeDriver();
+                return new ChromeDriver(BrowserCapabilities.getChromeCapabilities());
         }
     }
 }
