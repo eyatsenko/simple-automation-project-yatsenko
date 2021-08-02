@@ -8,11 +8,12 @@ import org.example.infrastructure.logger.FileTestLogger;
 import org.example.infrastructure.logger.StdTestLogger;
 import org.example.infrastructure.logger.TestLogger;
 import org.example.infrastructure.wdm.DefaultWebDriverManager;
+import org.openqa.selenium.WebDriver;
 
 public class TestBase {
     protected TestLogger logger;
     private DefaultWebDriverManager wdm;
-    protected String browser;
+    protected WebDriver browser;
 
     protected UserDataMapper userData;
 
