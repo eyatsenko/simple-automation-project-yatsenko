@@ -33,10 +33,10 @@ public class RemoteWebDriverFactory implements WebDriverFactory {
                 caps.merge(BrowserCapabilities.chrome());
             default:
         }
-        return new RemoteWebDriver(getServerUrl(),caps);
+        return new RemoteWebDriver(getServerUrl(), caps);
     }
 
-    private URL getServerUrl () {
+    private URL getServerUrl() {
         try {
             // check if URL is empty --> throw exception
             // check if localhost --> run server
