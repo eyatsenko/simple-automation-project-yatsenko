@@ -20,9 +20,10 @@ public class TestBase {
     public void setUp() {
         userData = getUserData();
         logger = getLogger();
+
         wdm = new DefaultWebDriverManager();
         webDriver = wdm.getWebDriver();
-        System.out.println("Starting browser " + webDriver);
+
         beforeTest();
     }
 
