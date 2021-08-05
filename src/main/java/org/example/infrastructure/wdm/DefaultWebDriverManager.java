@@ -2,11 +2,12 @@ package org.example.infrastructure.wdm;
 
 import org.example.infrastructure.config.ConfigurationManager;
 import org.example.infrastructure.wdm.enums.RunOn;
+import org.openqa.selenium.WebDriver;
 
 public class DefaultWebDriverManager implements WebDriverManager {
 
     @Override
-    public String getBrowser() {
+    public WebDriver getWebDriver() {
 
         RunOn runOn = RunOn.valueOf(ConfigurationManager.getInstance().getRunOn().toUpperCase());
 
@@ -22,9 +23,10 @@ public class DefaultWebDriverManager implements WebDriverManager {
     }
 
     @Override
-    public void destroyBrowser(String browser) {
+    public void destroyWebDriver(WebDriver browser) {
         if (browser != null) {
             System.out.println("Killing webDriver: " + browser);
+            browser.quit();
         }
     }
 }

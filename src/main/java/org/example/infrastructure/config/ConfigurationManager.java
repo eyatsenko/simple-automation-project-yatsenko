@@ -35,6 +35,38 @@ public class ConfigurationManager {
         return getEnvVarOrDefault("runOn", "local");
     }
 
+    public String getRemoteServerUrl () {
+        return getEnvVarOrDefault("remoteServerUrl", "https://localhost:4444");
+    }
+
+    public String getPlatform () {
+        return getEnvVarOrDefault("platform", "Windows");
+    }
+
+    public String getPlatformVersion () {
+        return getEnvVarOrDefault("platformVersion", "10");
+    }
+
+    public String getChromeVersion () {
+        return getEnvVarOrDefault("chromeVersion", "92");
+    }
+
+    public String getFirefoxVersion () {
+        return getEnvVarOrDefault("firefoxVersion", "90.0.2");
+    }
+
+    public String getCloudProvider () {
+        return getEnvVarOrDefault("cloudProvider", "");
+    }
+
+    public String getCloudUsername () {
+        return getEnvVarOrDefault("cloudUsername", "");
+    }
+
+    public String getCloudAccessKey () {
+        return getEnvVarOrDefault("cloudAccessKey", "");
+    }
+
     public String getMobilePlatform() {
         return getEnvVarOrDefault("mobilePlatform", "iOS");
     }

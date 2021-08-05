@@ -8,11 +8,12 @@ import org.example.infrastructure.logger.FileTestLogger;
 import org.example.infrastructure.logger.StdTestLogger;
 import org.example.infrastructure.logger.TestLogger;
 import org.example.infrastructure.wdm.DefaultWebDriverManager;
+import org.openqa.selenium.WebDriver;
 
 public class TestBase {
     protected TestLogger logger;
     private DefaultWebDriverManager wdm;
-    protected String browser;
+    protected WebDriver webDriver;
 
     protected UserDataMapper userData;
 
@@ -20,15 +21,15 @@ public class TestBase {
         userData = getUserData();
         logger = getLogger();
         wdm = new DefaultWebDriverManager();
-        browser = wdm.getBrowser();
-        System.out.println("Starting browser " + browser);
+        webDriver = wdm.getWebDriver();
+        System.out.println("Starting browser " + webDriver);
         beforeTest();
     }
 
     public void cleanUp() {
         afterTest();
 
-        wdm.destroyBrowser(browser);
+        wdm.destroyWebDriver(webDriver);
         logger.end();
     }
 
