@@ -7,6 +7,5 @@ public abstract class WordpressTestBase extends TestBase {
     protected void beforeTest() {
         logger.log("Open website");
         webDriver.get("http://yatsenko-site123.byethost22.com/");
-
     }
 }
