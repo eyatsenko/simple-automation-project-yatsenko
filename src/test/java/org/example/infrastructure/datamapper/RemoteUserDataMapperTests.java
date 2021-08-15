@@ -1,6 +1,6 @@
-package org.example.infra.datamapper;
+package org.example.infrastructure.datamapper;
 
-import org.example.infrastructure.data.DbUserDataMapper;
+import org.example.infrastructure.data.RemoteUserDataMapper;
 import org.example.infrastructure.data.User;
 import org.example.infrastructure.data.UserDataMapper;
 import org.example.infrastructure.data.UserNotFoundException;
@@ -9,13 +9,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class DbUserDataMapperTests {
+public class RemoteUserDataMapperTests {
 
     private UserDataMapper dataMapper;
 
     @Before
     public void setUp() {
-        dataMapper = new DbUserDataMapper("jdbc:mysql://localhost:3306/mysql");
+        dataMapper = new RemoteUserDataMapper("https://test.com:80");
     }
 
     @Test

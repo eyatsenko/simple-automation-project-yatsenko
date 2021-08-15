@@ -1,4 +1,4 @@
-package org.example.web.wp;
+package org.example.web;
 import org.example.infrastructure.base.TestBase;
 
 public abstract class WordpressTestBase extends TestBase {

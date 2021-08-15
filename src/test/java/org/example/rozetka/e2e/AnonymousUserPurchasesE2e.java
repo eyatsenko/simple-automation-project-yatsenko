@@ -1,7 +1,5 @@
 package org.example.rozetka.e2e;
 
-import org.example.infrastructure.base.TestBase;
-import org.example.infrastructure.logger.StdTestLogger;
 import org.junit.Test;
 
 public class AnonymousUserPurchasesE2e extends E2ETestBase {

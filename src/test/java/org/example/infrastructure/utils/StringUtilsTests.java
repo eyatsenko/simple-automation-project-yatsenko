@@ -1,6 +1,5 @@
-package org.example.infra.utils;
+package org.example.infrastructure.utils;
 
-import org.example.infrastructure.utils.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

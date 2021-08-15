@@ -1,6 +1,6 @@
-package org.example.infra.datamapper;
+package org.example.infrastructure.datamapper;
 
-import org.example.infrastructure.data.FileUserDataMapper;
+import org.example.infrastructure.data.DbUserDataMapper;
 import org.example.infrastructure.data.User;
 import org.example.infrastructure.data.UserDataMapper;
 import org.example.infrastructure.data.UserNotFoundException;
@@ -9,13 +9,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class FileUserDataMapperTests {
+public class DbUserDataMapperTests {
 
     private UserDataMapper dataMapper;
 
     @Before
     public void setUp() {
-        dataMapper = new FileUserDataMapper("src/test/resources/test-users.txt");
+        dataMapper = new DbUserDataMapper("jdbc:mysql://localhost:3306/mysql");
     }
 
     @Test

@@ -1,4 +1,4 @@
-package org.example.web.wp;
+package org.example.web;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

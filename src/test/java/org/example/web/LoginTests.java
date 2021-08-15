@@ -1,4 +1,4 @@
-package org.example.web.wp;
+package org.example.web;
 
 import org.example.infrastructure.logger.StdTestLogger;
 import org.example.infrastructure.utils.TimeUtils;

@@ -1,6 +1,5 @@
-package org.example.infra.config;
+package org.example.infrastructure.config;
 
-import org.example.infrastructure.config.ConfigurationManager;
 import org.junit.Before;
 import org.junit.Test;
 
