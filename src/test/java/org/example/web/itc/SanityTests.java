@@ -10,14 +10,14 @@ public class SanityTests extends ItcTestBase {
     @Test
     public void testRandomTopicOnEachPage() {
         logger.log("Open random article");
-        Post randomNewsPost= itc.mainPage().openRandomArticle();
+        Post randomNewsPost = itc.mainPage().openRandomArticle();
         Post openedNewsPost = itc.postPage().getGeneralPostInfo();
 
         logger.log("Check article page");
-        assertTrue (openedNewsPost.equals(randomNewsPost));
+        assertTrue(openedNewsPost.equals(randomNewsPost));
 
         logger.log("Check Review tab");
-        itc.menu().openReviewMenu();
+        //itc.menu().openReviewMenu();
 
 
     }

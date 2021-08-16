@@ -16,7 +16,6 @@ public class TestBase {
     protected WebDriver webDriver;
 
     protected UserDataMapper userData;
-
     public void setUp() {
         userData = getUserData();
         logger = getLogger();
