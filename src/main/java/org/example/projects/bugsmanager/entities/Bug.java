@@ -25,4 +25,12 @@ public class Bug {
     public int hashCode() {
         return Objects.hash(name, notes);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
 }

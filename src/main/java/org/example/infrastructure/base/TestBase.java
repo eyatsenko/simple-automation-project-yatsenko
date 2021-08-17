@@ -8,14 +8,21 @@ import org.example.infrastructure.logger.FileTestLogger;
 import org.example.infrastructure.logger.StdTestLogger;
 import org.example.infrastructure.logger.TestLogger;
 import org.example.infrastructure.wdm.DefaultWebDriverManager;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.openqa.selenium.WebDriver;
 
+@RunWith(JUnit4.class)
 public class TestBase {
     protected TestLogger logger;
     private DefaultWebDriverManager wdm;
     protected WebDriver webDriver;
 
     protected UserDataMapper userData;
+
+    @Before
     public void setUp() {
         userData = getUserData();
         logger = getLogger();
@@ -26,6 +33,7 @@ public class TestBase {
         beforeTest();
     }
 
+    @After
     public void cleanUp() {
         afterTest();
 

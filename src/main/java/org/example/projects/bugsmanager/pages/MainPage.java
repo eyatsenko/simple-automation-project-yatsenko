@@ -1,9 +1,11 @@
 package org.example.projects.bugsmanager.pages;
 
-import org.example.infrastructure.utils.StringUtils;
+import org.example.infrastructure.utils.TimeUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -18,28 +20,89 @@ public class MainPage {
 
     }
 
-    public List<WebElement> getAllBugs () {
-        //wait.until(ExpectedConditions.presenceOfElementLocated(By.id("gridview-1028")));
-        return webDriver.findElement(By.id("content")).findElements(By.cssSelector("tr[class*='x-grid-row']"));
+    public List<WebElement> getAllBugs() {
+        WebElement table = webDriver.findElement(By.id("gridview-1028"));
+        List<WebElement> bugs = table.findElements(By.tagName("tr"));
+        return bugs;
     }
 
-    public void openAndFillForm () {
-        WebElement formButton = webDriver.findElement(By.id("ext-gen1108"));
-        formButton.click();
+    public void openAndFillForm(String randomBugName, String randomBugNotes) {
+        webDriver.findElement(By.id("ext-gen1108")).click();
+        TimeUtils.waitFor(3);
+        ExpectedConditions.visibilityOf(webDriver.findElement(By.id("bugs__add_form")));
         WebElement form = webDriver.findElement(By.id("bugs__add_form"));
 
-        String randomBugName = "Yatsenko_bug" + StringUtils.randomString(StringUtils.Mode.NUMERIC, 5);
-        String randomBugNotes = "Yatsenko_note" + StringUtils.randomString(StringUtils.Mode.ALPHA, 5);
-
-        form.findElement(By.id("ext-gen1343")).sendKeys(randomBugName);
-        form.findElement(By.id("ext-gen1347")).sendKeys(randomBugNotes);
-
-        form.findElement(By.id("ext-gen1320")).click();
+        form.findElement(By.name("name")).sendKeys(randomBugName);
+        form.findElement(By.name("notes")).sendKeys(randomBugNotes);
+        form.findElement(By.cssSelector("span[class='x-btn-inner']")).click();
     }
 
-   // public void
+    public void deleteBug() {
 
-    public void refreshPage () {
+        List<WebElement> bugs = getAllBugs();
+
+        for (WebElement webElement : bugs) {
+            String st = webElement.getText();
+            if (st.contains("Yatsenko")) {
+                webElement.click();
+                webDriver.findElement(By.id("ext-gen1102")).click();
+
+                WebDriverWait wait = new WebDriverWait(webDriver, 5);
+                wait.until(ExpectedConditions.visibilityOf(webDriver.findElement(By.id("messagebox-1001"))));
+                WebElement confirmWindow = webDriver.findElement(By.id("messagebox-1001"));
+
+                WebElement yesButton = confirmWindow.findElement(By.id("button-1010"));
+                yesButton.click();
+                break;
+            }
+        }
+    }
+
+
+    public void fillNameAndNotes(String name, String notes) {
+
+        TimeUtils.waitFor(2);
+
+        webDriver.findElement(By.id("ext-gen1087")).click();
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(Keys.chord(name)).build().perform();
+
+        Actions actions2 = new Actions(webDriver);
+        actions2.sendKeys(Keys.chord(Keys.TAB)).build().perform();
+
+        Actions actions3 = new Actions(webDriver);
+        actions3.doubleClick().perform();
+        actions3.sendKeys(Keys.chord(notes)).build().perform();
+        actions3.sendKeys(Keys.chord(Keys.TAB)).build().perform();
+
+        TimeUtils.waitFor(5);
+
+        WebElement applyButton = webDriver.findElement(By.id("button-1044"));
+        applyButton.click();
+
+        TimeUtils.waitFor(10);
+    }
+
+    public boolean isBugPresent(String bugName) {
+
+        boolean result = false;
+
+        TimeUtils.waitFor(3);
+        List<WebElement> bugs = getAllBugs();
+
+        for (WebElement webElement : bugs) {
+            String st = webElement.getText();
+            if (st.contains(bugName)) {
+                result = true;
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    public void refreshPage() {
         webDriver.findElement(By.id("tool-1053")).click();
+        TimeUtils.waitFor(3);
     }
 }

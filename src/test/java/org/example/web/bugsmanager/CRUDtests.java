@@ -1,48 +1,62 @@
 package org.example.web.bugsmanager;
 
 
-import org.example.infrastructure.logger.StdTestLogger;
 import org.example.infrastructure.utils.StringUtils;
 import org.example.infrastructure.utils.TimeUtils;
-import org.example.infrastructure.wdm.DefaultWebDriverManager;
-import org.example.infrastructure.wdm.WebDriverManager;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class CRUDtests extends BugsManagerTestBase {
 
+    static final String randomBugName = "Yatsenko_bug" + StringUtils.randomString(StringUtils.Mode.NUMERIC, 5);
+    static final String randomBugNotes = "Yatsenko_note" + StringUtils.randomString(StringUtils.Mode.ALPHA, 5);
+
     @Test
-    public void createBugUsingAddInForm () throws InterruptedException {
-        StdTestLogger logger = new StdTestLogger();
-        WebDriverManager wdm = new DefaultWebDriverManager();
-        webDriver = wdm.getWebDriver();
-        logger.log("Open form and fill it");
-        webDriver.get("https://bugsmanager.herokuapp.com/");
+    public void createBugUsingAddInForm() {
 
-        webDriver.findElement(By.id("ext-gen1108")).click();
-
-        TimeUtils.waitFor(3);
-        ExpectedConditions.visibilityOf(webDriver.findElement(By.id("bugs__add_form")));
-
-        String randomBugName = "Yatsenko_bug" + StringUtils.randomString(StringUtils.Mode.NUMERIC, 5);
-        String randomBugNotes = "Yatsenko_note" + StringUtils.randomString(StringUtils.Mode.ALPHA, 5);
-
-        webDriver.findElement(By.name("name")).sendKeys(randomBugName);
-        webDriver.findElement(By.name("notes")).sendKeys(randomBugNotes);
-
-        webDriver.findElement(By.id("button-1144")).click();
-        Thread.sleep(50000);
-
+        logger.log("Create bug using form");
+        bugsManagerWebsite.mainPage().openAndFillForm(randomBugName, randomBugNotes);
 
         logger.log("Check that bug is created");
+        assertTrue(bugsManagerWebsite.mainPage().isBugPresent("Yatsenko"));
+        bugsManagerWebsite.mainPage().refreshPage();
 
-        webDriver.quit();
+        logger.log("Delete a bug");
+        bugsManagerWebsite.mainPage().deleteBug();
+        TimeUtils.waitFor(2);
 
+        logger.log("Check that bug is deleted");
+        assertFalse(bugsManagerWebsite.mainPage().isBugPresent("Yatsenko"));
     }
 
     @Test
-    public void createBugUsingAdd () {
+    public void createBugUsingAdd() {
 
+        logger.log("Fill bug name and notes");
+        bugsManagerWebsite.mainPage().fillNameAndNotes(randomBugName, randomBugNotes);
+
+        logger.log("Check that bug has been created");
+        assertTrue("Bug wasn't created", bugsManagerWebsite.mainPage()
+                .isBugPresent("Yatsenko"));
+        bugsManagerWebsite.mainPage().refreshPage();
+
+        logger.log("Delete a bug");
+        bugsManagerWebsite.mainPage()
+                .deleteBug();
+        TimeUtils.waitFor(2);
+
+        logger.log("Check that bug is deleted");
+        assertFalse(bugsManagerWebsite.mainPage()
+                .isBugPresent("Yatsenko"));
+
+        TimeUtils.waitFor(5);
+    }
+
+    @Test
+    public void checkThatFirstBugIsPresent() {
+        logger.log("Check that First Bug is present");
+        assertTrue("First Bug is not displayed", bugsManagerWebsite.mainPage().isBugPresent("First Bug"));
     }
 }
