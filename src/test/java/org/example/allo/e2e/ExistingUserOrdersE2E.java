@@ -1,4 +1,4 @@
-package org.example.rozetka.e2e;
+package org.example.allo.e2e;
 
 public class ExistingUserOrdersE2E extends E2ETestBase {
 

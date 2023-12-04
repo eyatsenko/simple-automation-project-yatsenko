@@ -1,4 +1,4 @@
-package org.example.rozetka.e2e;
+package org.example.allo.e2e;
 
 import org.example.infrastructure.base.TestBase;
 

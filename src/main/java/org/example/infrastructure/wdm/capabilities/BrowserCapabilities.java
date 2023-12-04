@@ -9,6 +9,7 @@ public class BrowserCapabilities {
 
     public static DesiredCapabilities chrome () {
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-notifications");
         // ...
 
         return new DesiredCapabilities().merge(options);
@@ -16,6 +17,7 @@ public class BrowserCapabilities {
 
     public static DesiredCapabilities firefox () {
         FirefoxOptions options = new FirefoxOptions();
+        options.addArguments("--disable-notifications");
         // ...
 
         return new DesiredCapabilities().merge(options);
